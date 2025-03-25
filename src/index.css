@@ -30,6 +30,10 @@ body {
   min-height: 100vh;
 }
 
+.percent-sign {
+
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -74,10 +78,13 @@ button:focus-visible {
     align-items: center;
     width: 100%;
     height: 100vh;
-    overflow-x: hidden;
     margin: 0;
     padding: 10px;
-    box-sizing: border-box;
+  }
+
+  h1 {
+    font-size: 2.75em;
+    line-height: 1.1;
   }
 
   .calculator-container {
