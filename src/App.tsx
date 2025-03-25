@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './App.css'
 
 const App = () => {
   enum modes {
@@ -24,7 +23,7 @@ const App = () => {
   return (
     <>
       <div>
-        <span className={"percent-sign"}>%</span>
+        <span className="percent-sign">%</span>
       </div>
       <h1>Calculate percentage!</h1>
       <div className="calculator-container">
