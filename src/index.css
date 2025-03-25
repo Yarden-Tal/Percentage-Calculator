@@ -212,6 +212,10 @@ input::placeholder {
     width: 100%;
   }
 
+  .percent-container {
+    margin-top: -6px;
+  }
+
   .percent-sign {
     font-size: 5.5rem;
   }

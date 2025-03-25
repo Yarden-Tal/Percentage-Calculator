@@ -22,7 +22,7 @@ const App = () => {
 
   return (
     <>
-      <div>
+      <div className='percent-container'>
         <span className="percent-sign">%</span>
       </div>
       <h1>Calculate percentage!</h1>
