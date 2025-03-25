@@ -200,7 +200,7 @@ input::placeholder {
 
   .input-group {
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
   }
 
@@ -213,6 +213,6 @@ input::placeholder {
   }
 
   .percent-sign {
-    font-size: 6rem;
+    font-size: 5.5rem;
   }
 }
