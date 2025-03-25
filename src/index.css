@@ -39,14 +39,14 @@ body {
   min-width: 320px;
   min-height: 100vh;
   max-width: 1280px;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-x: hidden;
   box-sizing: border-box;
 }
 
 .percent-sign {
   font-size: 7rem;
   font-weight: 700;
-  animation: colorCycle 5s infinite linear;
+  animation: colorCycle 8s infinite linear;
 }
 
 h1 {
