@@ -85,6 +85,7 @@ button:focus-visible {
   h1 {
     font-size: 2.2em;
     line-height: 1.1;
+    margin-top: 0;
   }
 
   .calculator-container {
