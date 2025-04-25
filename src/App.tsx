@@ -12,13 +12,18 @@ const App = () => {
   const [result, setResult] = useState<number | null>(null);
 
   const calculate = (): void => {
-    if (!num1 || !num2) return;
+    if (!num1 || !num2) return alert("Please provide two numbers.");
+    else { 
     const n1 = parseFloat(num1);
     const n2 = parseFloat(num2);
     if (isNaN(n1) || isNaN(n2) || n2 === 0) return;
     setResult(mode === modes.PERCENT_OF ? (n1 / 100) * n2 : (n1 / n2) * 100);
+    }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === "Enter") calculate();
+  };
 
   return (
     <>
@@ -62,6 +67,7 @@ const App = () => {
           placeholder={mode === modes.PERCENT_OF ? "%" : "Number"}
           value={num1}
           onChange={(e) => setNum1(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
         <span className='mid-span'>{mode === modes.PERCENT_OF ? "of" : "is what % of"}</span>
         <input
@@ -70,6 +76,7 @@ const App = () => {
           placeholder="Number"
           value={num2}
           onChange={(e) => setNum2(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
       </div>
 
