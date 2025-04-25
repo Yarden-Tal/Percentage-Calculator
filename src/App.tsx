@@ -1,12 +1,9 @@
 import { useState } from 'react'
+import { modes } from './models';
 
 const App = () => {
-  enum modes {
-    PERCENT_OF = "percentOf",
-    WHAT_PERCENT = "whatPercent"
-  }
 
-  const [mode, setMode] = useState<string>(modes.PERCENT_OF);
+  const [mode, setMode] = useState<string>(modes.WHAT_PERCENT);
   const [num1, setNum1] = useState<string>("");
   const [num2, setNum2] = useState<string>("");
   const [result, setResult] = useState<number | null>(null);
@@ -20,6 +17,14 @@ const App = () => {
     setResult(mode === modes.PERCENT_OF ? (n1 / 100) * n2 : (n1 / n2) * 100);
     }
   };
+
+  const handleClick = (mode: string): void => {
+    if (mode === modes.PERCENT_OF) setMode(modes.WHAT_PERCENT)
+    else setMode(modes.PERCENT_OF)
+    setResult(null);
+    setNum1("");
+    setNum2("");
+  }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === "-" || e.key === "+" || e.key === "e") e.preventDefault();
@@ -35,29 +40,17 @@ const App = () => {
       <div className="calculator-container">
       <div className="button-group">
         <button
-          className={mode === modes.PERCENT_OF ? "active" : ""}
-          onClick={() => {
-            setMode(modes.PERCENT_OF);
-            setResult(null);
-            setNum1("");
-            setNum2("");
-            }
-          }
+          className={mode === modes.WHAT_PERCENT ? "active" : ""}
+          onClick={() => handleClick(mode)}
         >
-          What is __% of __?
+          __ is what % of __?
         </button>
         <div className='sized-box'></div>
         <button
-          className={mode === modes.WHAT_PERCENT ? "active" : ""}
-          onClick={() => {
-            setMode(modes.WHAT_PERCENT);
-            setResult(null);
-            setNum1("");
-            setNum2("");
-            }
-          }
+          className={mode === modes.PERCENT_OF ? "active" : ""}
+          onClick={() => handleClick(mode)}
         >
-          __ is what % of __?
+          What is __% of __?
         </button>
       </div>
 
