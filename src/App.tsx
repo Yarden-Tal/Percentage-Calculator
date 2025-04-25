@@ -22,6 +22,7 @@ const App = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === "-" || e.key === "+" || e.key === "e") e.preventDefault();
     if (e.key === "Enter") calculate();
   };
 
