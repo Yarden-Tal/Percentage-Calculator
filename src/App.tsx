@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { modes } from './models';
+import { calculate, handleKeyDown } from './utils';
 
 const App = () => {
 
@@ -8,28 +9,15 @@ const App = () => {
   const [num2, setNum2] = useState<string>("");
   const [result, setResult] = useState<number | null>(null);
 
-  const calculate = (): void => {
-    if (!num1 || !num2) return alert("Please provide two numbers.");
-    else { 
-    const n1 = parseFloat(num1);
-    const n2 = parseFloat(num2);
-    if (isNaN(n1) || isNaN(n2) || n2 === 0) return;
-    setResult(mode === modes.PERCENT_OF ? (n1 / 100) * n2 : (n1 / n2) * 100);
-    }
-  };
+  const handleCalculate = (): void => setResult(calculate(mode, num1, num2));
 
-  const handleClick = (mode: string): void => {
+  const changeMode = (mode: string): void => {
     if (mode === modes.PERCENT_OF) setMode(modes.WHAT_PERCENT)
     else setMode(modes.PERCENT_OF)
     setResult(null);
     setNum1("");
     setNum2("");
   }
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === "-" || e.key === "+" || e.key === "e") e.preventDefault();
-    if (e.key === "Enter") calculate();
-  };
 
   return (
     <>
@@ -41,14 +29,14 @@ const App = () => {
       <div className="button-group">
         <button
           className={mode === modes.WHAT_PERCENT ? "active" : ""}
-          onClick={() => handleClick(mode)}
+          onClick={() => changeMode(mode)}
         >
           __ is what % of __?
         </button>
         <div className='sized-box'></div>
         <button
           className={mode === modes.PERCENT_OF ? "active" : ""}
-          onClick={() => handleClick(mode)}
+          onClick={() => changeMode(mode)}
         >
           What is __% of __?
         </button>
@@ -61,7 +49,7 @@ const App = () => {
           placeholder={mode === modes.PERCENT_OF ? "%" : "Number"}
           value={num1}
           onChange={(e) => setNum1(e.target.value)}
-          onKeyDown={handleKeyDown}
+          onKeyDown={e => handleKeyDown(e, handleCalculate)}
         />
         <span className='mid-span'>{mode === modes.PERCENT_OF ? "of" : "is what % of"}</span>
         <input
@@ -70,11 +58,11 @@ const App = () => {
           placeholder="Number"
           value={num2}
           onChange={(e) => setNum2(e.target.value)}
-          onKeyDown={handleKeyDown}
+          onKeyDown={e => handleKeyDown(e, handleCalculate)}
         />
       </div>
 
-      <button onClick={calculate} className="calculate-button">Calculate</button>
+      <button onClick={handleCalculate} className="calculate-button">Calculate</button>
 
       {result !== null && (
         <div className="result">{result.toFixed(2)}
@@ -83,7 +71,7 @@ const App = () => {
       )}
     </div>
       <p className="footnote">
-        Created by <a href='https://github.com/Yarden-Tal'>Yarden Tal</a>
+        Created by <a target="_blank" href="https://github.com/Yarden-Tal">Yarden Tal</a>
       </p>
     </>
   )
