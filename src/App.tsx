@@ -9,7 +9,10 @@ const App = () => {
   const [num2, setNum2] = useState<string>("");
   const [result, setResult] = useState<number | null>(null);
 
-  const handleCalculate = (): void => setResult(calculate(mode, num1, num2));
+  const handleCalculate = (): void => {
+    if (!num1 || !num2) return alert("Please provide 2 numbers.")
+    else setResult(calculate(mode, num1, num2))
+  };
 
   const changeMode = (mode: string): void => {
     if (mode === modes.PERCENT_OF) setMode(modes.WHAT_PERCENT)
