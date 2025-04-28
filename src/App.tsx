@@ -32,14 +32,14 @@ const App = () => {
       <div className="button-group">
         <button
           className={mode === modes.WHAT_PERCENT ? "active" : ""}
-          onClick={() => changeMode(mode)}
+          onClick={() => changeMode(modes.PERCENT_OF)}
         >
           __ is what % of __?
         </button>
         <div className='sized-box'></div>
         <button
           className={mode === modes.PERCENT_OF ? "active" : ""}
-          onClick={() => changeMode(mode)}
+          onClick={() => changeMode(modes.WHAT_PERCENT)}
         >
           What is __% of __?
         </button>
@@ -67,11 +67,10 @@ const App = () => {
 
       <button onClick={handleCalculate} className="calculate-button">Calculate</button>
 
-      {result !== null && (
-        <div className="result">{result.toFixed(2)}
-        {mode === modes.WHAT_PERCENT && <span> %</span>}
+      
+        <div className="result" style={{opacity: result ?? "0", pointerEvents: result === null ? "none" : "all"}}>
+          {(result !== null) ? result.toFixed(2) : "None"} {((result !== null) && mode === modes.WHAT_PERCENT) && <span> %</span>}
         </div>
-      )}
     </div>
       <p className="footnote">
         Created by <a target="_blank" href="https://github.com/Yarden-Tal">Yarden Tal</a>
